@@ -13,7 +13,7 @@ public class FiringPoint : MonoBehaviour
         if(Input.GetButtonDown("Fire1"))
         {
             GameObject projectileInstance;
-            projectileInstance = Instantiate(projectilePrefab, firingPoint.posistion, firingPoint.rotation);
+            projectileInstance = Instantiate(projectilePrefab, firingPoint.position, firingPoint.rotation);
             projectileInstance.GetComponent<Rigidbody>().AddForce(firingPoint.forward * projectileSpeed);
         }
     }

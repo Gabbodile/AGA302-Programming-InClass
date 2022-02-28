@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    // Start is called before the first frame update
+    // to destroy the projectile after a certain amount of time
     void Start()
     {
         Destroy(gameObject, 3);
