@@ -4,31 +4,42 @@ using UnityEngine;
 
 public class TriggerZone : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    public GameObject sphere;
+
+    private Color originalColor;
+    public Color newColor;
+
+    private void Start()
     {
-        if(PlayerDetected(other))
+        originalColor = sphere.GetComponent<Renderer>().material.color;
+      
+
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
         {
+            sphere.GetComponent<Renderer>().material.color = Color.green;
             Debug.Log("Entered");
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    void OnTriggerStay(Collider other)
     {
-        if (PlayerDetected(other))
+        if (other.CompareTag("Player"))
         {
+            sphere.transform.localScale = Vector3.one * 0.01f;
             Debug.Log("Staying");
         }
     }
-    private void OnTriggerExit(Collider other)
+
+    void OnTriggerExit(Collider other)
     {
-        if (PlayerDetected(other))
+        if (other.CompareTag("Player"))
         {
+            sphere.transform.localScale = Vector3.one;
+            sphere.GetComponent<Renderer>().material.color = originalColor;
             Debug.Log("Exited");
         }
-    }
-
-    bool PlayerDetected(Collider _other)
-    {
-        return _other.CompareTag("Player");
     }
 }

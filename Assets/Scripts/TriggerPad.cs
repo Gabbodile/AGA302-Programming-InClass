@@ -13,7 +13,7 @@ public class TriggerPad : MonoBehaviour
             sphere.GetComponent<Renderer>().material.color = Color.green;
         }
     }
-
+ 
     void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))

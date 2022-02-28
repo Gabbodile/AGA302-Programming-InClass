@@ -13,19 +13,7 @@ public class EnemyManager : MonoBehaviour
     
     void Start()
     {
-        enemies.Add(enemyTypes[0]);
-        print(enemyTypes[0].name);
-        print("array length: " + enemies.Count);
-
-        enemies.Remove(enemies[0]);
-
-        for (int i = 0; i < 101; i++)
-        {
-            print(i);
-        }
-
-        SpawnEnemy();
-        
+        SpawnEnemy();   
     }
     
     void Update()
@@ -34,7 +22,7 @@ public class EnemyManager : MonoBehaviour
             KillEnemy(enemies[0]);
 
         if (Input.GetKeyDown(KeyCode.B))
-            KillSpecificEnemies(enemies[0]);
+            KillSpecificEnemies("_B");
 
     }
     /// <summary>
@@ -46,18 +34,18 @@ public class EnemyManager : MonoBehaviour
         for (int i = 0; i < spawnPoints.Length; i++)
         {
             int rnd = Random.Range(0, enemyTypes.Length);
-            GameObject go = Instantiate(enemyTypes[rnd], spawnPoints[0].position, spawnPoints[0].rotation);
+            GameObject go = Instantiate(enemyTypes[rnd], spawnPoints[i].position, spawnPoints[i].rotation);
             enemies.Add(go);
         }
     }
 
-    void KillSpecificEnemies()
+    void KillSpecificEnemies(string _condition)
     {
         int eCount = enemies.Count;
         for (int i = 0; i < enemies.Count; i++)
         {
             if (enemies[i].name.Contains(_condition))
-                KillEnemy("_B");
+                KillEnemy(enemies[i]);
         }
     }
     /// <summary>
